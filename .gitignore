@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.env
+data/raw/
+data/processed/
+data/chunks.jsonl
+data/*.json
+*.ipynb_checkpoints
