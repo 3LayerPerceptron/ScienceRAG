@@ -6,3 +6,4 @@ data/processed/
 data/chunks.jsonl
 data/*.json
 *.ipynb_checkpoints
+.idea/
