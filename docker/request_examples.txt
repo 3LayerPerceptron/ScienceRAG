@@ -1,0 +1,22 @@
+curl -X POST "http://localhost:8025/upload-dataset/" \
+  -F "files=@./test/file1.txt" \
+  -F "files=@./test/file2.txt" \
+  -F "name=physics_papers" \
+  -F "chunk_method=naive" \
+  -F "embedding_model=mistral-embed@Mistral"
+
+
+curl -X POST "http://localhost:8025/parse-documents/?dataset_id=3081b4b0d78811f085d166c97ee06825"
+
+curl -X POST "http://localhost:8025/retrieve/"   -H "Content-Type: application/json"   -d '{
+    "query": "Are there XGboost pipelines to predict the future distribution of cells?",
+    "dataset_ids": ["3081b4b0d78811f085d166c97ee06825"],
+    "limit": 5                                          
+  }'
+
+
+curl -X POST "http://localhost:8025/generate/"   -H "Content-Type: application/json"   -d '{
+    "query": "Are there XGboost pipelines to predict the future distribution of cells?",
+    "dataset_ids": ["3081b4b0d78811f085d166c97ee06825"],
+    "limit": 5, "model" : "mistral-tiny"
+  }'
