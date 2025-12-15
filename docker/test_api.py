@@ -37,8 +37,8 @@ def test_retrieve(query, dataset_ids):
     response = requests.post(
         "http://localhost:8025/retrieve/",
         json={
-            "query": "Is there such a thing as hierarchical time series?",
-            "dataset_ids": ["aa4f5248d76f11f085d166c97ee06825"],
+            "query": query,
+            "dataset_ids": dataset_ids,
             "limit": 3,
             "similarity_threshold": 0.2
         }
@@ -51,8 +51,8 @@ def test_generate(query, dataset_ids):
     response = requests.post(
         "http://localhost:8025/generate/",
         json={
-            "query": "Is there such a thing as hierarchical time series?",
-            "dataset_ids": ["aa4f5248d76f11f085d166c97ee06825"],
+            "query": query,
+            "dataset_ids": dataset_ids,
             "limit": 3,
             "similarity_threshold": 0.2,
             "model": "mistral-tiny"
