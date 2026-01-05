@@ -4,10 +4,15 @@
   [Описание](#описание)
   [Запуск проекта](#запуск)
   [Тестирование](#тестирование)
+  [Интерфейс](#интерфейс)
   [Артефакты](#артефакты)
 
 
 ## Архитектура
+
+
+![Architecture](./Artifacts/architecture_scheme.jpeg)
+## Описание
 
 Реализован простой раг пайплайн.
 
@@ -68,6 +73,7 @@ pip3 install streamlit
 ```
 streamlit run ./App/gui.py
 ```
+!Если используется Mistral-embed, то запросы в модель необходимо слать на английском языке.
 
 ## Тестирование
 
@@ -90,6 +96,24 @@ streamlit run ./App/gui.py
 | mean_faithfulness    | 0.424 |
 | hallucination_rate   | 0.576 |
 
+## Интерфейс
+Страница загрузки датасета
+
+![Architecture](./Artifacts/interface_page_1.png)
+
+Страница чата
+
+![Architecture](./Artifacts/interface_page_2_part_1.png)
+![Architecture](./Artifacts/interface_page_2_part_2.png)
+
 ## Артефакты
+
+В директории Artefacts можно увидеть следующие артефакты разработки:
+
+- Пример .env файлика
+- Рисунок Архитектуры
+- Скриншоты интерфейса
+- Пример данных после предобработки (data sample)
+- Примеры запросов в API через curl и python
 
 
