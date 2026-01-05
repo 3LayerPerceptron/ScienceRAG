@@ -1,0 +1,1905 @@
+2026-01-05 01:43:58,703 INFO     35 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 01:43:58,704 INFO     35 Staggering startup by 0.04s to prevent connection storm
+2026-01-05 01:43:58,743 INFO     35 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 01:43:58,745 INFO     35 RAGFlow version: v0.23.1
+2026-01-05 01:43:58,747 INFO     35 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 01:43:58,755 WARNING  35 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 01:43:58,766 INFO     35 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:43:58,767 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:43:58,767 WARNING  35 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:43:58,775 INFO     35 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:43:58,776 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:43:58,776 WARNING  35 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:43:58,782 INFO     35 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:43:58,783 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:43:58,784 WARNING  35 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:43:58,790 INFO     35 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:43:58,790 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:43:58,791 WARNING  35 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:44:04,574 INFO     35 GET http://es01:9200/ [status:N/A duration:0.781s]
+2026-01-05 01:44:04,575 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:44:04,576 WARNING  35 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NameResolutionError(HTTPConnection(host='es01', port=9200): Failed to resolve 'es01' ([Errno -3] Temporary failure in name resolution))
+2026-01-05 01:44:04,583 INFO     35 GET http://es01:9200/ [status:N/A duration:0.006s]
+2026-01-05 01:44:04,584 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:44:04,584 WARNING  35 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NameResolutionError(HTTPConnection(host='es01', port=9200): Failed to resolve 'es01' ([Errno -3] Temporary failure in name resolution))
+2026-01-05 01:44:05,973 INFO     35 GET http://es01:9200/ [status:N/A duration:1.388s]
+2026-01-05 01:44:05,974 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:44:05,974 WARNING  35 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:44:05,976 INFO     35 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:44:05,978 INFO     35 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:44:05,979 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:44:05,979 WARNING  35 Connection error caused by: ConnectionError(Connection error caused by: NameResolutionError(HTTPConnection(host='es01', port=9200): Failed to resolve 'es01' ([Errno -3] Temporary failure in name resolution))). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:44:10,980 INFO     35 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:44:10,982 INFO     35 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:44:10,983 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 01:44:10,983 WARNING  35 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:44:10,984 INFO     35 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:44:10,987 INFO     35 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:44:10,988 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 01:44:10,988 WARNING  35 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:44:10,992 INFO     35 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:44:10,993 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 01:44:10,993 WARNING  35 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:44:10,996 INFO     35 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:44:10,997 WARNING  35 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 01:44:10,997 ERROR    35 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 01:44:13,578 INFO     35 Close text detector.
+2026-01-05 01:44:15,190 INFO     35 Close text recognizer.
+2026-01-05 01:46:23,270 INFO     314 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 01:46:23,271 INFO     314 Staggering startup by 0.24s to prevent connection storm
+2026-01-05 01:46:23,510 INFO     314 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 01:46:23,512 INFO     314 RAGFlow version: v0.23.1
+2026-01-05 01:46:23,512 INFO     314 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 01:46:23,519 WARNING  314 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 01:46:23,528 INFO     314 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:46:23,529 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:46:23,529 WARNING  314 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:46:23,534 INFO     314 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:46:23,534 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:46:23,535 WARNING  314 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:46:23,539 INFO     314 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:46:23,539 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:46:23,540 WARNING  314 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:46:23,544 INFO     314 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:46:23,545 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:46:23,546 WARNING  314 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:46:28,550 INFO     314 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:46:28,551 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:46:28,551 WARNING  314 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:46:28,554 INFO     314 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:46:28,555 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:46:28,555 WARNING  314 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:46:28,558 INFO     314 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:46:28,558 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:46:28,559 WARNING  314 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:46:28,563 INFO     314 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:46:28,563 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:46:28,564 WARNING  314 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:46:33,565 INFO     314 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:46:33,568 INFO     314 HEAD http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:46:33,569 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 01:46:33,569 WARNING  314 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:46:33,570 INFO     314 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:46:33,573 INFO     314 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:46:33,574 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 01:46:33,574 WARNING  314 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:46:33,575 INFO     314 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:46:33,578 INFO     314 HEAD http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:46:33,579 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 01:46:33,579 WARNING  314 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:46:33,583 INFO     314 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:46:33,583 WARNING  314 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 01:46:33,584 ERROR    314 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 01:46:35,771 INFO     314 Close text detector.
+2026-01-05 01:46:37,144 INFO     314 Close text recognizer.
+2026-01-05 01:48:14,982 INFO     552 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 01:48:14,983 INFO     552 Staggering startup by 0.41s to prevent connection storm
+2026-01-05 01:48:15,395 INFO     552 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 01:48:15,396 INFO     552 RAGFlow version: v0.23.1
+2026-01-05 01:48:15,396 INFO     552 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 01:48:15,401 WARNING  552 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 01:48:15,408 INFO     552 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:48:15,409 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:48:15,409 WARNING  552 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:48:15,413 INFO     552 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:48:15,413 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:48:15,414 WARNING  552 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:48:15,416 INFO     552 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:48:15,416 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:48:15,417 WARNING  552 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:48:15,420 INFO     552 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:48:15,420 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:48:15,421 WARNING  552 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:48:20,424 INFO     552 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:48:20,425 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:48:20,425 WARNING  552 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:48:20,428 INFO     552 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:48:20,428 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:48:20,428 WARNING  552 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:48:20,431 INFO     552 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:48:20,431 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:48:20,432 WARNING  552 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:48:20,434 INFO     552 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:48:20,434 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:48:20,435 WARNING  552 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:48:25,435 INFO     552 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:48:25,438 INFO     552 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:48:25,439 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 01:48:25,439 WARNING  552 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:48:25,441 INFO     552 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:48:25,443 INFO     552 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:48:25,444 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 01:48:25,444 WARNING  552 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:48:25,445 INFO     552 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:48:25,447 INFO     552 HEAD http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:48:25,447 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 01:48:25,447 WARNING  552 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:48:25,450 INFO     552 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:48:25,451 WARNING  552 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 01:48:25,451 ERROR    552 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 01:48:27,594 INFO     552 Close text detector.
+2026-01-05 01:48:29,132 INFO     552 Close text recognizer.
+2026-01-05 01:50:12,987 INFO     792 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 01:50:12,988 INFO     792 Staggering startup by 0.06s to prevent connection storm
+2026-01-05 01:50:13,048 INFO     792 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 01:50:13,049 INFO     792 RAGFlow version: v0.23.1
+2026-01-05 01:50:13,050 INFO     792 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 01:50:13,053 WARNING  792 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 01:50:13,060 INFO     792 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:50:13,060 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:50:13,060 WARNING  792 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:50:13,063 INFO     792 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:50:13,063 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:50:13,064 WARNING  792 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:50:13,066 INFO     792 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:50:13,066 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:50:13,067 WARNING  792 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:50:13,069 INFO     792 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:50:13,070 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:50:13,070 WARNING  792 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:50:18,075 INFO     792 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:50:18,076 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:50:18,076 WARNING  792 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:50:18,079 INFO     792 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:50:18,080 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:50:18,080 WARNING  792 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:50:18,084 INFO     792 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:50:18,084 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:50:18,085 WARNING  792 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:50:18,088 INFO     792 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:50:18,088 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:50:18,089 WARNING  792 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:50:23,089 INFO     792 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:50:23,091 INFO     792 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:50:23,092 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 01:50:23,092 WARNING  792 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:50:23,094 INFO     792 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:50:23,096 INFO     792 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:50:23,097 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 01:50:23,097 WARNING  792 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:50:23,099 INFO     792 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:50:23,101 INFO     792 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:50:23,101 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 01:50:23,102 WARNING  792 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:50:23,104 INFO     792 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:50:23,105 WARNING  792 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 01:50:23,105 ERROR    792 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 01:50:25,317 INFO     792 Close text detector.
+2026-01-05 01:50:26,466 INFO     792 Close text recognizer.
+2026-01-05 01:52:10,844 INFO     985 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 01:52:10,844 INFO     985 Staggering startup by 0.40s to prevent connection storm
+2026-01-05 01:52:11,241 INFO     985 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 01:52:11,242 INFO     985 RAGFlow version: v0.23.1
+2026-01-05 01:52:11,242 INFO     985 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 01:52:11,245 WARNING  985 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 01:52:12,308 INFO     985 GET http://es01:9200/ [status:N/A duration:1.059s]
+2026-01-05 01:52:12,309 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:52:12,309 WARNING  985 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:52:12,312 INFO     985 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:52:12,313 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:52:12,313 WARNING  985 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:52:12,316 INFO     985 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:52:12,316 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:52:12,317 WARNING  985 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:52:12,319 INFO     985 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:52:12,319 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:52:12,320 WARNING  985 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:52:17,324 INFO     985 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:52:17,324 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:52:17,325 WARNING  985 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:52:17,328 INFO     985 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:52:17,328 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:52:17,329 WARNING  985 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:52:17,332 INFO     985 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:52:17,333 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:52:17,333 WARNING  985 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:52:17,337 INFO     985 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:52:17,337 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:52:17,338 WARNING  985 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:52:22,339 INFO     985 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:52:22,342 INFO     985 HEAD http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:52:22,343 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 01:52:22,343 WARNING  985 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:52:22,345 INFO     985 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:52:22,347 INFO     985 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:52:22,347 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 01:52:22,348 WARNING  985 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:52:22,349 INFO     985 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:52:22,352 INFO     985 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:52:22,352 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 01:52:22,353 WARNING  985 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:52:22,356 INFO     985 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:52:22,356 WARNING  985 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 01:52:22,356 ERROR    985 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 01:52:24,722 INFO     985 Close text detector.
+2026-01-05 01:52:26,138 INFO     985 Close text recognizer.
+2026-01-05 01:54:08,811 INFO     1207 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 01:54:08,812 INFO     1207 Staggering startup by 0.08s to prevent connection storm
+2026-01-05 01:54:08,890 INFO     1207 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 01:54:08,891 INFO     1207 RAGFlow version: v0.23.1
+2026-01-05 01:54:08,892 INFO     1207 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 01:54:08,897 WARNING  1207 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 01:54:08,905 INFO     1207 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:54:08,906 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:54:08,907 WARNING  1207 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:54:08,912 INFO     1207 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:54:08,913 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:54:08,913 WARNING  1207 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:54:08,917 INFO     1207 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:54:08,917 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:54:08,918 WARNING  1207 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:54:08,922 INFO     1207 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:54:08,922 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:54:08,922 WARNING  1207 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:54:13,928 INFO     1207 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:54:13,929 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:54:13,929 WARNING  1207 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:54:13,933 INFO     1207 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:54:13,934 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:54:13,934 WARNING  1207 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:54:13,938 INFO     1207 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:54:13,939 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:54:13,939 WARNING  1207 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:54:13,942 INFO     1207 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:54:13,943 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:54:13,943 WARNING  1207 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:54:18,944 INFO     1207 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:54:18,946 INFO     1207 HEAD http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:54:18,946 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 01:54:18,946 WARNING  1207 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:54:18,947 INFO     1207 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:54:18,948 INFO     1207 HEAD http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:54:18,949 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 01:54:18,949 WARNING  1207 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:54:18,950 INFO     1207 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:54:18,952 INFO     1207 HEAD http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:54:18,952 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 01:54:18,952 WARNING  1207 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:54:18,954 INFO     1207 HEAD http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:54:18,954 WARNING  1207 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 01:54:18,955 ERROR    1207 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 01:54:20,846 INFO     1207 Close text detector.
+2026-01-05 01:54:21,947 INFO     1207 Close text recognizer.
+2026-01-05 01:56:00,847 INFO     1446 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 01:56:00,848 INFO     1446 Staggering startup by 0.40s to prevent connection storm
+2026-01-05 01:56:01,246 INFO     1446 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 01:56:01,248 INFO     1446 RAGFlow version: v0.23.1
+2026-01-05 01:56:01,248 INFO     1446 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 01:56:01,254 WARNING  1446 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 01:56:01,263 INFO     1446 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:56:01,264 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:56:01,265 WARNING  1446 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:56:01,269 INFO     1446 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:56:01,269 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:56:01,270 WARNING  1446 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:56:01,273 INFO     1446 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:56:01,273 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:56:01,273 WARNING  1446 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:56:01,276 INFO     1446 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:56:01,277 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:56:01,277 WARNING  1446 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:56:06,281 INFO     1446 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:56:06,282 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:56:06,282 WARNING  1446 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:56:06,285 INFO     1446 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:56:06,286 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:56:06,286 WARNING  1446 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:56:06,289 INFO     1446 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:56:06,289 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:56:06,290 WARNING  1446 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:56:06,293 INFO     1446 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:56:06,293 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:56:06,294 WARNING  1446 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:56:11,294 INFO     1446 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:56:11,297 INFO     1446 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:56:11,297 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 01:56:11,298 WARNING  1446 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:56:11,299 INFO     1446 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:56:11,301 INFO     1446 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:56:11,301 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 01:56:11,302 WARNING  1446 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:56:11,303 INFO     1446 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:56:11,305 INFO     1446 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:56:11,305 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 01:56:11,306 WARNING  1446 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:56:11,308 INFO     1446 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:56:11,309 WARNING  1446 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 01:56:11,309 ERROR    1446 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 01:56:13,346 INFO     1446 Close text detector.
+2026-01-05 01:56:14,486 INFO     1446 Close text recognizer.
+2026-01-05 01:57:53,537 INFO     1688 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 01:57:53,538 INFO     1688 Staggering startup by 0.36s to prevent connection storm
+2026-01-05 01:57:53,895 INFO     1688 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 01:57:53,896 INFO     1688 RAGFlow version: v0.23.1
+2026-01-05 01:57:53,896 INFO     1688 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 01:57:53,901 WARNING  1688 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 01:57:53,910 INFO     1688 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:57:53,911 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:57:53,911 WARNING  1688 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:57:53,915 INFO     1688 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:57:53,915 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:57:53,916 WARNING  1688 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:57:53,919 INFO     1688 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:57:53,920 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:57:53,920 WARNING  1688 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:57:53,923 INFO     1688 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:57:53,924 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:57:53,924 WARNING  1688 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:57:58,928 INFO     1688 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:57:58,928 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:57:58,929 WARNING  1688 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:57:58,931 INFO     1688 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:57:58,931 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:57:58,932 WARNING  1688 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:57:58,935 INFO     1688 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:57:58,935 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:57:58,935 WARNING  1688 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:57:58,938 INFO     1688 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:57:58,938 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:57:58,938 WARNING  1688 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:58:03,939 INFO     1688 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:58:03,942 INFO     1688 HEAD http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:58:03,943 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 01:58:03,943 WARNING  1688 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:58:03,945 INFO     1688 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:58:03,947 INFO     1688 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:58:03,948 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 01:58:03,949 WARNING  1688 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:58:03,951 INFO     1688 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:58:03,954 INFO     1688 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:58:03,954 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 01:58:03,954 WARNING  1688 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:58:03,958 INFO     1688 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:58:03,959 WARNING  1688 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 01:58:03,959 ERROR    1688 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 01:58:06,329 INFO     1688 Close text detector.
+2026-01-05 01:58:07,625 INFO     1688 Close text recognizer.
+2026-01-05 01:59:45,222 INFO     1860 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 01:59:45,223 INFO     1860 Staggering startup by 0.14s to prevent connection storm
+2026-01-05 01:59:45,362 INFO     1860 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 01:59:45,363 INFO     1860 RAGFlow version: v0.23.1
+2026-01-05 01:59:45,363 INFO     1860 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 01:59:45,369 WARNING  1860 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 01:59:45,379 INFO     1860 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:59:45,380 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:59:45,380 WARNING  1860 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:59:45,385 INFO     1860 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:59:45,386 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:59:45,387 WARNING  1860 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:59:45,391 INFO     1860 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:59:45,392 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:59:45,393 WARNING  1860 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:59:45,398 INFO     1860 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 01:59:45,399 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:59:45,399 WARNING  1860 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:59:50,403 INFO     1860 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:59:50,403 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 01:59:50,403 WARNING  1860 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:59:50,407 INFO     1860 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:59:50,407 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 01:59:50,407 WARNING  1860 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:59:50,411 INFO     1860 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:59:50,411 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 01:59:50,412 WARNING  1860 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:59:50,414 INFO     1860 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 01:59:50,414 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 01:59:50,414 WARNING  1860 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 01:59:55,415 INFO     1860 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:59:56,436 INFO     1860 HEAD http://es01:9200/ [status:N/A duration:1.021s]
+2026-01-05 01:59:56,437 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 01:59:56,438 WARNING  1860 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:59:56,440 INFO     1860 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:59:56,443 INFO     1860 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:59:56,444 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 01:59:56,445 WARNING  1860 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:59:56,446 INFO     1860 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 01:59:56,450 INFO     1860 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:59:56,451 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 01:59:56,451 WARNING  1860 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 01:59:56,455 INFO     1860 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 01:59:56,455 WARNING  1860 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 01:59:56,456 ERROR    1860 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 01:59:58,699 INFO     1860 Close text detector.
+2026-01-05 01:59:59,938 INFO     1860 Close text recognizer.
+2026-01-05 02:01:41,968 INFO     2103 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 02:01:41,969 INFO     2103 Staggering startup by 0.02s to prevent connection storm
+2026-01-05 02:01:41,991 INFO     2103 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 02:01:41,992 INFO     2103 RAGFlow version: v0.23.1
+2026-01-05 02:01:41,992 INFO     2103 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 02:01:41,996 WARNING  2103 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 02:01:42,001 INFO     2103 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:01:42,002 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:01:42,002 WARNING  2103 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:01:42,006 INFO     2103 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:01:42,006 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:01:42,006 WARNING  2103 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:01:42,009 INFO     2103 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:01:42,009 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:01:42,010 WARNING  2103 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:01:42,012 INFO     2103 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:01:42,012 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:01:42,012 WARNING  2103 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:01:47,016 INFO     2103 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:01:47,017 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:01:47,017 WARNING  2103 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:01:47,019 INFO     2103 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:01:47,020 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:01:47,020 WARNING  2103 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:01:47,022 INFO     2103 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:01:47,022 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:01:47,023 WARNING  2103 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:01:47,025 INFO     2103 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:01:47,025 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:01:47,026 WARNING  2103 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:01:52,026 INFO     2103 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:01:52,047 INFO     2103 HEAD http://es01:9200/ [status:N/A duration:0.020s]
+2026-01-05 02:01:52,048 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 02:01:52,048 WARNING  2103 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:01:52,050 INFO     2103 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:01:52,052 INFO     2103 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:01:52,052 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 02:01:52,053 WARNING  2103 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:01:52,054 INFO     2103 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:01:52,056 INFO     2103 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:01:52,056 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 02:01:52,057 WARNING  2103 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:01:52,060 INFO     2103 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:01:52,060 WARNING  2103 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 02:01:52,061 ERROR    2103 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 02:01:54,194 INFO     2103 Close text detector.
+2026-01-05 02:01:55,383 INFO     2103 Close text recognizer.
+2026-01-05 02:03:34,787 INFO     2342 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 02:03:34,788 INFO     2342 Staggering startup by 0.04s to prevent connection storm
+2026-01-05 02:03:34,828 INFO     2342 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 02:03:34,829 INFO     2342 RAGFlow version: v0.23.1
+2026-01-05 02:03:34,829 INFO     2342 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 02:03:34,835 WARNING  2342 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 02:03:34,845 INFO     2342 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 02:03:34,846 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:03:34,847 WARNING  2342 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:03:34,852 INFO     2342 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:03:34,852 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:03:34,853 WARNING  2342 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:03:34,856 INFO     2342 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:03:34,857 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:03:34,857 WARNING  2342 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:03:34,861 INFO     2342 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:03:34,861 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:03:34,862 WARNING  2342 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:03:39,866 INFO     2342 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:03:39,866 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:03:39,867 WARNING  2342 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:03:39,869 INFO     2342 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:03:39,870 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:03:39,870 WARNING  2342 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:03:39,873 INFO     2342 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:03:39,873 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:03:39,873 WARNING  2342 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:03:39,876 INFO     2342 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:03:39,876 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:03:39,877 WARNING  2342 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:03:44,877 INFO     2342 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:03:44,879 INFO     2342 HEAD http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:03:44,879 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 02:03:44,880 WARNING  2342 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:03:44,880 INFO     2342 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:03:44,882 INFO     2342 HEAD http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:03:44,882 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 02:03:44,882 WARNING  2342 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:03:44,883 INFO     2342 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:03:44,884 INFO     2342 HEAD http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:03:44,884 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 02:03:44,885 WARNING  2342 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:03:44,887 INFO     2342 HEAD http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:03:44,887 WARNING  2342 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 02:03:44,887 ERROR    2342 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 02:03:46,761 INFO     2342 Close text detector.
+2026-01-05 02:03:47,803 INFO     2342 Close text recognizer.
+2026-01-05 02:05:28,580 INFO     2549 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 02:05:28,581 INFO     2549 Staggering startup by 0.35s to prevent connection storm
+2026-01-05 02:05:28,933 INFO     2549 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 02:05:28,933 INFO     2549 RAGFlow version: v0.23.1
+2026-01-05 02:05:28,934 INFO     2549 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 02:05:28,937 WARNING  2549 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 02:05:28,944 INFO     2549 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:05:28,945 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:05:28,945 WARNING  2549 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:05:28,948 INFO     2549 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:05:28,949 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:05:28,949 WARNING  2549 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:05:28,952 INFO     2549 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:05:28,952 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:05:28,952 WARNING  2549 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:05:28,955 INFO     2549 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:05:28,955 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:05:28,956 WARNING  2549 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:05:33,961 INFO     2549 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 02:05:33,964 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:05:33,965 WARNING  2549 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:05:33,990 INFO     2549 GET http://es01:9200/ [status:N/A duration:0.018s]
+2026-01-05 02:05:33,994 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:05:33,997 WARNING  2549 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:05:34,007 INFO     2549 GET http://es01:9200/ [status:N/A duration:0.008s]
+2026-01-05 02:05:34,010 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:05:34,014 WARNING  2549 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:05:34,018 INFO     2549 GET http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 02:05:34,024 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:05:34,025 WARNING  2549 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:05:39,027 INFO     2549 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:05:39,031 INFO     2549 HEAD http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 02:05:39,032 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 02:05:39,032 WARNING  2549 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:05:39,034 INFO     2549 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:05:39,036 INFO     2549 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:05:39,036 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 02:05:39,037 WARNING  2549 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:05:39,038 INFO     2549 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:05:39,041 INFO     2549 HEAD http://es01:9200/ [status:N/A duration:0.003s]
+2026-01-05 02:05:39,042 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 02:05:39,042 WARNING  2549 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:05:39,045 INFO     2549 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:05:39,046 WARNING  2549 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 02:05:39,046 ERROR    2549 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 02:05:41,890 INFO     2549 Close text detector.
+2026-01-05 02:05:42,998 INFO     2549 Close text recognizer.
+2026-01-05 02:07:13,023 INFO     2755 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 02:07:13,024 INFO     2755 Staggering startup by 0.36s to prevent connection storm
+2026-01-05 02:07:13,387 INFO     2755 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 02:07:13,388 INFO     2755 RAGFlow version: v0.23.1
+2026-01-05 02:07:13,388 INFO     2755 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 02:07:13,392 WARNING  2755 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 02:07:13,399 INFO     2755 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:07:13,399 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:07:13,400 WARNING  2755 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:07:13,403 INFO     2755 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:07:13,404 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:07:13,404 WARNING  2755 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:07:13,408 INFO     2755 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:07:13,409 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:07:13,409 WARNING  2755 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:07:13,412 INFO     2755 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:07:13,413 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:07:13,413 WARNING  2755 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:07:18,416 INFO     2755 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:07:18,417 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:07:18,417 WARNING  2755 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:07:18,419 INFO     2755 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:07:18,419 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:07:18,419 WARNING  2755 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:07:18,421 INFO     2755 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:07:18,421 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:07:18,421 WARNING  2755 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:07:18,422 INFO     2755 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:07:18,422 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:07:18,423 WARNING  2755 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:07:23,423 INFO     2755 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:07:23,426 INFO     2755 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:07:23,426 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 02:07:23,426 WARNING  2755 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:07:23,427 INFO     2755 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:07:23,429 INFO     2755 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:07:23,430 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 02:07:23,430 WARNING  2755 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:07:23,431 INFO     2755 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:07:23,433 INFO     2755 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:07:23,434 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 02:07:23,434 WARNING  2755 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:07:23,437 INFO     2755 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:07:23,438 WARNING  2755 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 02:07:23,438 ERROR    2755 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 02:07:25,487 INFO     2755 Close text detector.
+2026-01-05 02:07:26,783 INFO     2755 Close text recognizer.
+2026-01-05 02:08:56,265 INFO     3010 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 02:08:56,266 INFO     3010 Staggering startup by 0.28s to prevent connection storm
+2026-01-05 02:08:56,552 INFO     3010 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 02:08:56,552 INFO     3010 RAGFlow version: v0.23.1
+2026-01-05 02:08:56,553 INFO     3010 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 02:08:56,556 WARNING  3010 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 02:08:56,560 INFO     3010 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:08:56,560 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:08:56,561 WARNING  3010 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:08:56,563 INFO     3010 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:08:56,563 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:08:56,563 WARNING  3010 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:08:56,565 INFO     3010 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:08:56,565 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:08:56,565 WARNING  3010 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:08:56,567 INFO     3010 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:08:56,567 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:08:56,568 WARNING  3010 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:09:01,572 INFO     3010 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:09:01,572 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:09:01,573 WARNING  3010 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:09:01,575 INFO     3010 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:09:01,575 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:09:01,575 WARNING  3010 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:09:01,578 INFO     3010 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:09:01,578 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:09:01,578 WARNING  3010 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:09:01,580 INFO     3010 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:09:01,581 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:09:01,582 WARNING  3010 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:09:06,583 INFO     3010 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:09:06,588 INFO     3010 HEAD http://es01:9200/ [status:N/A duration:0.005s]
+2026-01-05 02:09:06,589 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 02:09:06,589 WARNING  3010 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:09:06,590 INFO     3010 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:09:06,593 INFO     3010 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:09:06,593 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 02:09:06,594 WARNING  3010 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:09:06,596 INFO     3010 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:09:06,599 INFO     3010 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:09:06,600 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 02:09:06,600 WARNING  3010 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:09:06,603 INFO     3010 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:09:06,604 WARNING  3010 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 02:09:06,604 ERROR    3010 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 02:09:08,433 INFO     3010 Close text detector.
+2026-01-05 02:09:09,457 INFO     3010 Close text recognizer.
+2026-01-05 02:11:15,219 INFO     36 task_executor_581b9087ff13_0 log path: /ragflow/logs/task_executor_581b9087ff13_0.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 02:11:15,220 INFO     36 Staggering startup by 0.23s to prevent connection storm
+2026-01-05 02:11:15,453 INFO     36 
+    ____                      __  _
+   /  _/___  ____ ____  _____/ /_(_)___  ____     ________  ______   _____  _____
+   / // __ \/ __ `/ _ \/ ___/ __/ / __ \/ __ \   / ___/ _ \/ ___/ | / / _ \/ ___/
+ _/ // / / / /_/ /  __(__  ) /_/ / /_/ / / / /  (__  )  __/ /   | |/ /  __/ /
+/___/_/ /_/\__, /\___/____/\__/_/\____/_/ /_/  /____/\___/_/    |___/\___/_/
+          /____/
+    
+2026-01-05 02:11:15,454 INFO     36 RAGFlow version: v0.23.1
+2026-01-05 02:11:15,455 INFO     36 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 02:11:15,459 WARNING  36 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 02:11:15,467 INFO     36 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:11:15,468 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:11:15,468 WARNING  36 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:11:15,472 INFO     36 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:11:15,473 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:11:15,473 WARNING  36 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:11:15,477 INFO     36 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:11:15,477 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:11:15,477 WARNING  36 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:11:15,480 INFO     36 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:11:15,481 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:11:15,481 WARNING  36 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:11:20,485 INFO     36 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:11:20,486 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 1 times in a row, putting on 1 second timeout
+2026-01-05 02:11:20,486 WARNING  36 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:11:20,489 INFO     36 GET http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:11:20,489 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 2 times in a row, putting on 2 second timeout
+2026-01-05 02:11:20,490 WARNING  36 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:11:20,492 INFO     36 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:11:20,492 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 3 times in a row, putting on 4 second timeout
+2026-01-05 02:11:20,493 WARNING  36 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:11:20,495 INFO     36 GET http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:11:20,495 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 4 times in a row, putting on 8 second timeout
+2026-01-05 02:11:20,495 WARNING  36 Connection error caused by: ConnectionError(Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)). Waiting Elasticsearch http://es01:9200 to be healthy.
+2026-01-05 02:11:25,496 INFO     36 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:11:25,498 INFO     36 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:11:25,499 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 5 times in a row, putting on 16 second timeout
+2026-01-05 02:11:25,499 WARNING  36 Retrying request after failure (attempt 0 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:11:25,500 INFO     36 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:11:25,502 INFO     36 HEAD http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:11:25,503 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 6 times in a row, putting on 30 second timeout
+2026-01-05 02:11:25,503 WARNING  36 Retrying request after failure (attempt 1 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:11:25,504 INFO     36 Resurrected node <Urllib3HttpNode(http://es01:9200)> (force=False)
+2026-01-05 02:11:25,506 INFO     36 HEAD http://es01:9200/ [status:N/A duration:0.001s]
+2026-01-05 02:11:25,506 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 7 times in a row, putting on 30 second timeout
+2026-01-05 02:11:25,507 WARNING  36 Retrying request after failure (attempt 2 of 3)
+Traceback (most recent call last):
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_transport.py", line 328, in perform_request
+    meta, raw_data = node.perform_request(
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/elastic_transport/_node/_http_urllib3.py", line 202, in perform_request
+    raise err from None
+elastic_transport.ConnectionError: Connection error caused by: NewConnectionError(HTTPConnection(host='es01', port=9200): Failed to establish a new connection: [Errno 111] Connection refused)
+2026-01-05 02:11:25,509 INFO     36 HEAD http://es01:9200/ [status:N/A duration:0.002s]
+2026-01-05 02:11:25,509 WARNING  36 Node <Urllib3HttpNode(http://es01:9200)> has failed for 8 times in a row, putting on 30 second timeout
+2026-01-05 02:11:25,510 ERROR    36 Elasticsearch http://es01:9200 is unhealthy in 10s.
+2026-01-05 02:11:27,297 INFO     36 Close text detector.
+2026-01-05 02:11:28,595 INFO     36 Close text recognizer.

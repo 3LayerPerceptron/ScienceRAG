@@ -1,7 +1,0 @@
-openai==2.8.1
-uvicorn==0.38.0
-pydantic==2.12.3
-fastapi==0.122.0
-ragflow-sdk==0.22.1
-python-dotenv==1.1.1
-python-multipart==0.0.20

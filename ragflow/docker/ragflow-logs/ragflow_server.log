@@ -1,0 +1,176 @@
+2026-01-05 02:13:45,213 INFO     21 ragflow_server log path: /ragflow/logs/ragflow_server.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 02:13:45,213 INFO     21 
+        ____   ___    ______ ______ __
+       / __ \ /   |  / ____// ____// /____  _      __
+      / /_/ // /| | / / __ / /_   / // __ \| | /| / /
+     / _, _// ___ |/ /_/ // __/  / // /_/ /| |/ |/ /
+    /_/ |_|/_/  |_|\____//_/    /_/ \____/ |__/|__/
+
+    
+2026-01-05 02:13:45,214 INFO     21 RAGFlow version: v0.23.1
+2026-01-05 02:13:45,214 INFO     21 project base: /ragflow
+2026-01-05 02:13:45,214 INFO     21 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 02:13:45,217 WARNING  21 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 02:13:45,223 WARNING  21 Load term.freq FAIL!
+2026-01-05 02:13:45,235 WARNING  21 Realtime synonym is disabled, since no redis connection.
+2026-01-05 02:13:45,242 WARNING  21 Load term.freq FAIL!
+2026-01-05 02:13:45,252 WARNING  21 Realtime synonym is disabled, since no redis connection.
+2026-01-05 02:13:45,253 INFO     21 MAX_CONTENT_LENGTH: 134217728
+2026-01-05 02:13:45,253 INFO     21 MAX_FILE_COUNT_PER_USER: 0
+2026-01-05 02:13:54,312 INFO     21 Init message_id sequence done, current max id is 1.
+2026-01-05 02:13:54,313 INFO     21 No memory found, no need to init memory size.
+2026-01-05 02:13:54,314 INFO     21 init web data success:2.715973377227783
+2026-01-05 02:13:54,316 INFO     21 Recursively importing plugins from path `/ragflow/plugin/embedded_plugins`
+2026-01-05 02:13:54,321 INFO     21 Loaded llm_tools plugin BadCalculatorPlugin version 1.0.0
+2026-01-05 02:13:54,322 INFO     21 RAGFlow HTTP server start...
+2026-01-05 02:13:54,776 INFO     21 Running on http://0.0.0.0:9380 (CTRL + C to quit)
+2026-01-05 02:13:55,322 INFO     21 Starting update_progress thread (delayed)
+2026-01-05 02:13:55,324 INFO     21 update_progress lock_value: edc7afe3-0fcf-40e8-b3de-c42fa3293c75
+2026-01-05 02:19:23,528 WARNING  21 Database connection issue (attempt 1/5): (0, '')
+2026-01-05 02:52:13,913 WARNING  21 Database connection issue (attempt 1/5): (0, '')
+2026-01-05 03:13:32,347 INFO     21 [HISTORY][
+  {
+    "role": "user",
+    "content": "Hello! How are you doing!"
+  }
+]
+2026-01-05 03:13:33,878 ERROR    21 OpenAI async completion
+Traceback (most recent call last):
+  File "/ragflow/rag/llm/chat_model.py", line 481, in async_chat
+    return await self._async_chat(history, gen_conf, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/rag/llm/chat_model.py", line 465, in _async_chat
+    response = await self.async_client.chat.completions.create(model=self.model_name, messages=history, **gen_conf, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2678, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1794, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1594, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-01-05 03:13:33,895 ERROR    21 async base giving up: **ERROR**: AUTH_ERROR - Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-01-05 03:13:34,090 INFO     21 [HISTORY][
+  {
+    "role": "user",
+    "content": "Hello! How are you doing!"
+  }
+]
+2026-01-05 03:13:34,218 ERROR    21 OpenAI async completion
+Traceback (most recent call last):
+  File "/ragflow/rag/llm/chat_model.py", line 481, in async_chat
+    return await self._async_chat(history, gen_conf, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/rag/llm/chat_model.py", line 465, in _async_chat
+    response = await self.async_client.chat.completions.create(model=self.model_name, messages=history, **gen_conf, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2678, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1794, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1594, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-01-05 03:13:34,220 ERROR    21 async base giving up: **ERROR**: AUTH_ERROR - Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-01-05 03:13:34,405 INFO     21 [HISTORY][
+  {
+    "role": "user",
+    "content": "Hello! How are you doing!"
+  }
+]
+2026-01-05 03:13:34,483 ERROR    21 OpenAI async completion
+Traceback (most recent call last):
+  File "/ragflow/rag/llm/chat_model.py", line 481, in async_chat
+    return await self._async_chat(history, gen_conf, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/rag/llm/chat_model.py", line 465, in _async_chat
+    response = await self.async_client.chat.completions.create(model=self.model_name, messages=history, **gen_conf, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2678, in create
+    return await self._post(
+           ^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1794, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/ragflow/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1594, in request
+    raise self._make_status_error_from_response(err.response) from None
+openai.PermissionDeniedError: Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-01-05 03:13:34,488 ERROR    21 async base giving up: **ERROR**: AUTH_ERROR - Error code: 403 - {'error': {'code': 'unsupported_country_region_territory', 'message': 'Country, region, or territory not supported', 'param': None, 'type': 'request_forbidden'}}
+2026-01-05 03:21:49,609 WARNING  21 Database connection issue (attempt 1/5): (0, '')
+2026-01-05 03:22:24,151 WARNING  21 Database connection issue (attempt 1/5): (0, '')
+2026-01-05 03:29:09,140 INFO     21 POST http://es01:9200/ragflow_f5a59099e99911f0a4350a790a5ec9ca/_delete_by_query?refresh=true [status:404 duration:0.272s]
+2026-01-05 03:29:09,141 WARNING  21 ESConnection.delete got exception: NotFoundError(404, 'index_not_found_exception', 'no such index [ragflow_f5a59099e99911f0a4350a790a5ec9ca]', ragflow_f5a59099e99911f0a4350a790a5ec9ca, index_or_alias)
+2026-01-05 03:29:09,200 INFO     21 POST http://es01:9200/ragflow_f5a59099e99911f0a4350a790a5ec9ca/_delete_by_query?refresh=true [status:404 duration:0.007s]
+2026-01-05 03:29:09,201 WARNING  21 ESConnection.delete got exception: NotFoundError(404, 'index_not_found_exception', 'no such index [ragflow_f5a59099e99911f0a4350a790a5ec9ca]', ragflow_f5a59099e99911f0a4350a790a5ec9ca, index_or_alias)
+2026-01-05 03:29:09,248 INFO     21 POST http://es01:9200/ragflow_f5a59099e99911f0a4350a790a5ec9ca/_delete_by_query?refresh=true [status:404 duration:0.007s]
+2026-01-05 03:29:09,249 WARNING  21 ESConnection.delete got exception: NotFoundError(404, 'index_not_found_exception', 'no such index [ragflow_f5a59099e99911f0a4350a790a5ec9ca]', ragflow_f5a59099e99911f0a4350a790a5ec9ca, index_or_alias)
+2026-01-05 03:29:09,327 WARNING  21 Database connection issue (attempt 1/5): (0, '')
+2026-01-05 03:29:11,389 WARNING  21 Database connection issue (attempt 1/5): (0, '')
+2026-01-05 03:38:27,245 INFO     21 HEAD http://es01:9200/ragflow_f5a59099e99911f0a4350a790a5ec9ca [status:200 duration:0.010s]
+2026-01-05 03:38:29,210 INFO     21 POST http://es01:9200/ragflow_f5a59099e99911f0a4350a790a5ec9ca/_search [status:200 duration:0.086s]
+2026-01-05 03:39:07,369 WARNING  21 Database connection issue (attempt 1/5): (0, '')
+2026-01-05 03:39:16,531 WARNING  21 Database connection issue (attempt 1/5): (0, '')
+2026-01-05 03:53:41,906 INFO     21 HEAD http://es01:9200/ragflow_f5a59099e99911f0a4350a790a5ec9ca [status:200 duration:0.205s]
+2026-01-05 03:53:41,925 INFO     21 POST http://es01:9200/ragflow_f5a59099e99911f0a4350a790a5ec9ca/_search [status:200 duration:0.015s]
+2026-01-05 03:54:44,654 INFO     21 POST http://es01:9200/ragflow_f5a59099e99911f0a4350a790a5ec9ca/_search [status:200 duration:0.674s]
+2026-01-05 03:54:45,054 WARNING  21 Database connection issue (attempt 1/5): (0, '')
+2026-01-05 03:54:46,093 WARNING  21 Database connection issue (attempt 1/5): (0, '')
+2026-01-05 03:54:47,113 WARNING  21 Database connection issue (attempt 1/5): (0, '')
+2026-01-05 19:21:10,114 ERROR    21 Request failed: 
+NoneType: None
+2026-01-05 19:21:10,115 ERROR    21 Request failed: 
+NoneType: None
+2026-01-05 19:21:10,175 INFO     21 HEAD http://es01:9200/ragflow_f5a59099e99911f0a4350a790a5ec9ca [status:200 duration:0.091s]
+2026-01-05 19:21:10,192 INFO     21 POST http://es01:9200/ragflow_f5a59099e99911f0a4350a790a5ec9ca/_search [status:200 duration:0.015s]
+2026-01-05 19:25:40,365 INFO     20 ragflow_server log path: /ragflow/logs/ragflow_server.log, log levels: {'peewee': 'WARNING', 'pdfminer': 'WARNING', 'root': 'INFO'}
+2026-01-05 19:25:40,365 INFO     20 
+        ____   ___    ______ ______ __
+       / __ \ /   |  / ____// ____// /____  _      __
+      / /_/ // /| | / / __ / /_   / // __ \| | /| / /
+     / _, _// ___ |/ /_/ // __/  / // /_/ /| |/ |/ /
+    /_/ |_|/_/  |_|\____//_/    /_/ \____/ |__/|__/
+
+    
+2026-01-05 19:25:40,365 INFO     20 RAGFlow version: v0.23.1
+2026-01-05 19:25:40,366 INFO     20 project base: /ragflow
+2026-01-05 19:25:40,366 INFO     20 Current configs, from /ragflow/conf/service_conf.yaml:
+	ragflow: {'host': '0.0.0.0', 'http_port': 9380}
+	admin: {'host': '0.0.0.0', 'http_port': 9381}
+	mysql: {'name': 'rag_flow', 'user': 'root', 'password': '********', 'host': 'mysql', 'port': 3306, 'max_connections': 900, 'stale_timeout': 300, 'max_allowed_packet': 1073741824}
+	minio: {'user': 'rag_flow', 'password': '********', 'host': 'minio:9000', 'bucket': '', 'prefix_path': ''}
+	es: {'hosts': 'http://es01:9200', 'username': 'elastic', 'password': '********'}
+	os: {'hosts': 'http://opensearch01:9201', 'username': 'admin', 'password': '********'}
+	infinity: {'uri': 'infinity:23817', 'db_name': 'default_db'}
+	oceanbase: {'scheme': 'oceanbase', 'config': {'db_name': 'ragflow_doc', 'user': 'root@ragflow', 'password': 'infini_rag_flow', 'host': 'oceanbase', 'port': 2881}}
+	redis: {'db': 1, 'username': '', 'password': '********', 'host': 'redis:6379'}
+	user_default_llm: {'default_models': {'embedding_model': {'api_key': 'xxx', 'base_url': 'http://tei:80'}}}
+2026-01-05 19:25:40,369 WARNING  20 SECURITY WARNING: Using auto-generated SECRET_KEY.
+2026-01-05 19:25:40,373 WARNING  20 Load term.freq FAIL!
+2026-01-05 19:25:40,380 WARNING  20 Realtime synonym is disabled, since no redis connection.
+2026-01-05 19:25:40,385 WARNING  20 Load term.freq FAIL!
+2026-01-05 19:25:40,391 WARNING  20 Realtime synonym is disabled, since no redis connection.
+2026-01-05 19:25:40,392 INFO     20 MAX_CONTENT_LENGTH: 134217728
+2026-01-05 19:25:40,392 INFO     20 MAX_FILE_COUNT_PER_USER: 0
+2026-01-05 19:25:43,193 INFO     20 Init message_id sequence done, current max id is 1.
+2026-01-05 19:25:43,195 INFO     20 No memory found, no need to init memory size.
+2026-01-05 19:25:43,195 INFO     20 init web data success:2.5452136993408203
+2026-01-05 19:25:43,196 INFO     20 Recursively importing plugins from path `/ragflow/plugin/embedded_plugins`
+2026-01-05 19:25:43,199 INFO     20 Loaded llm_tools plugin BadCalculatorPlugin version 1.0.0
+2026-01-05 19:25:43,200 INFO     20 RAGFlow HTTP server start...
+2026-01-05 19:25:43,553 INFO     20 Running on http://0.0.0.0:9380 (CTRL + C to quit)
+2026-01-05 19:25:44,200 INFO     20 Starting update_progress thread (delayed)
+2026-01-05 19:25:44,201 INFO     20 update_progress lock_value: cdaec7fe-93fd-4cf5-b971-96a2010f1f70
